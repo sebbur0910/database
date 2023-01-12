@@ -1,4 +1,5 @@
 import sqlite3
+from faker import Faker
 
 conn = sqlite3.connect("student.sqlite")
 
@@ -16,3 +17,5 @@ CREATE TABLE IF NOT EXISTS students (
 
 cursor.execute(create_students_table)
 conn.close()
+
+print("")
