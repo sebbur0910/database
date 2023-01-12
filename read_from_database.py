@@ -20,3 +20,7 @@ first_student = cursor.fetchone()
 more_students = cursor.fetchmany(10)
 other_students = cursor.fetchall()
 
+
+
+
+
