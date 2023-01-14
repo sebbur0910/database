@@ -12,7 +12,7 @@ VALUES
     (?,?,?,?);
 """
 fake = Faker("fr_FR")
-for i in range (10):
+for i in range(10):
     f_name = fake.first_name()
     l_name = fake.last_name()
     age = random.randint(11,18)
