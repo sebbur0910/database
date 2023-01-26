@@ -36,7 +36,11 @@ CREATE TABLE IF NOT EXISTS comments (
   FOREIGN KEY (post_id) REFERENCES posts (id)
 );
 """
-create_users_table
-create_likes_table
-create_posts_table
-create_comments_table
+
+conn = sqlite3.connect("social")
+cursor = conn.cursor()
+
+conn.execute(create_users_table)
+conn.execute(create_likes_table)
+conn.execute(create_posts_table)
+conn.execute(create_comments_table)
