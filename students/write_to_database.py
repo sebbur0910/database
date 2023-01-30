@@ -2,7 +2,7 @@ import sqlite3
 from faker import Faker
 import random
 
-conn = sqlite3.connect("student.sqlite")
+conn = sqlite3.connect("../student.sqlite")
 cursor = conn.cursor()
 
 parameterised_insert_query = """
