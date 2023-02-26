@@ -38,9 +38,13 @@ class Book(Base):
                              order_by='(Person.name)',
                              back_populates='on_loan')
 
+    publisher = relationship("Publisher", back_populates="books")
 
     def __repr__(self):
-        return f"<Book({self.name})>"
+        return f"Book(title='{self.title}'," \
+               f"isbn={self.isbn}), " \
+               f"num_pages={self.num_pages}, " \
+               f"publication_date={self.publication_date})"
 
 
 class Publisher(Base):
@@ -48,8 +52,10 @@ class Publisher(Base):
     publisher_id = Column(Integer, primary_key=True, autoincrement=True)
     publisher_name = Column(String)
 
+    books = relationship("Book", back_populates="publisher")
+
     def __repr__(self):
-        return f"<Publisher({self.name})>"
+        return f"Publisher(publisher_name='{self.publisher_name}')"
 
 
 class Author(Base):
@@ -63,7 +69,7 @@ class Author(Base):
                          back_populates="authors")
 
     def __repr__(self):
-        return f"<Author({self.name})>"
+        return f"Author(author_name='{self.author_name}'))"
 
 
 class Person(Base):
@@ -77,7 +83,7 @@ class Person(Base):
                            order_by='(Book.title)',
                            back_populates="borrowers")
     def __repr__(self):
-        return f"<Person({self.name})>"
+        return f"Person(name='{self.name}')"
 
 
 
