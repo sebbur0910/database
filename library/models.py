@@ -11,13 +11,13 @@ book_author = Table("book_author",
                     UniqueConstraint('book_id', 'author_id')
                     )
 
-
 book_loan = Table("book_loan",
                   Base.metadata,
                   Column('book_id', ForeignKey('book.book_id')),
                   Column('person_id', ForeignKey("person.person_id")),
                   UniqueConstraint('book_id', 'person_id')
                   )
+
 
 class Book(Base):
     __tablename__ = "book"
@@ -82,8 +82,6 @@ class Person(Base):
                            secondary=book_loan,
                            order_by='(Book.title)',
                            back_populates="borrowers")
+
     def __repr__(self):
         return f"Person(name='{self.name}')"
-
-
-

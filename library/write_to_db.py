@@ -69,7 +69,7 @@ books[0].borrowers.append(people[1])
 books[2].borrowers.append(people[2])
 books[2].borrowers.append(people[0])
 
-engine = create_engine('sqlite:///library.db', echo=True)
+engine = create_engine('sqlite:///library.sqlite', echo=True)
 
 with Session(engine) as sess:
     sess.add_all(books)
