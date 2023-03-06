@@ -1,7 +1,10 @@
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
+from model import EmailAddress
+
 class Controller:
-    def __init__(self, model, view):
-        self.model = model
-        self.view = view
+    def __init__(self):
+        self.engine = create_engine("sqlite:///emails.sqlite", echo=True)
 
     def save(self, email):
         """
@@ -11,13 +14,11 @@ class Controller:
         """
         try:
 
-            # save the model
-            self.model.email = email
-            self.model.save()
-
-            # show a success message
-            self.view.show_success(f'The email {email} saved!')
+            with Session(self.engine) as sess:
+                sess.add(EmailAddress(email=email))
+                sess.commit()
+            return f"{email} saved!"
 
         except ValueError as error:
             # show an error message
-            self.view.show_error(error)
+            raise ValueError(error)
