@@ -23,11 +23,10 @@ class EmailAddress(Base):
         return address
 
     @validates("password")
-    def validate_email(self, key, address):
-        #Eight characters including one uppercase letter, one lowercase letter, and one number or special character.
-        pattern = r'(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"'
+    def validate_password(self, key, address):
+        pattern = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
         if not re.fullmatch(pattern, address):
-            raise ValueError("Invalid password")
+            raise ValueError("Password must be minimum eight characters, at least one uppercase letter, one lowercase letter and one number")
         if key!= "password":
             raise ValueError("Key must be \"password\"")
         return address
