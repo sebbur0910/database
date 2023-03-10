@@ -27,7 +27,7 @@ class EmailAddress(Base):
         pattern = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
         if not re.fullmatch(pattern, address):
             raise ValueError("Password must be minimum eight characters, at least one uppercase letter, one lowercase letter and one number")
-        if key!= "password":
+        if key != "password":
             raise ValueError("Key must be \"password\"")
         return address
 
