@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 from model import EmailAddress
 
 class Controller:
-    def __init__(self):
-        self.engine = create_engine("sqlite:///email.sqlite", echo=True)
+    def __init__(self, db_name="email.sqlite"):
+        self.engine = create_engine(f"sqlite:///{db_name}", echo=True)
 
     def save(self, email, password):
         """
